@@ -1,0 +1,1 @@
+{"connection_params":["gta","opnfv"],"connection":"SSH","tests":[{"src":"146.164.69.208","dst":"146.164.69.198","param":[5],"rounds":2,"test":"Ping","output_file":"/tmp/ping"},{"src":"146.164.69.208","dst":"146.164.69.198","param":[5001,"100M",10,1400],"test":"Iperf"}]}
