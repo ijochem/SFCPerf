@@ -22,7 +22,7 @@ class Iperf (Test):
     def run(self):
         if self.conexaoDST.connect(self.dst):
             self.conexaoDST.command("killall -9 iperf")
-            cmd = " iperf -su -p %s " %(str(self.port),)
+            cmd = " \"iperf -su -p %s\"" %(str(self.port),)
             p1 = self.conexaoDST.commandNoBlock(cmd)
         else:
             print "Erro de conexao com o DST"
@@ -31,6 +31,7 @@ class Iperf (Test):
             self.conexaoSRC.command("killall -9 iperf")
             cmd ="iperf -c "+ str(self.dst) + " -p "+str(self.port)+" -u -b " + str(self.rate) + " -t " + str(self.time)
             self.result = self.conexaoSRC.command(cmd)
+            self.conexaoDST.command("killall -9 iperf")
             return self.result
         else:
             print "Erro de conexao com o SRC"

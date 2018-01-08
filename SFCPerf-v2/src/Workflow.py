@@ -1,11 +1,16 @@
 import json
 import time
+from SFC import SFC
 
 class Workflow:
     def __init__(self, jsonWorkflow):
         j = jsonWorkflow
         self.conexao_params = j["connection_params"]
         self.conexao = __import__(j["connection"]).getClass()(*self.conexao_params)
+        
+        if "SFC" in j:
+            self.sfc = SFC(j["SFC"])
+            self.sfc.createSFC()
         
         self.testes = []
         for t in j["tests"]:
@@ -16,6 +21,7 @@ class Workflow:
                 output_file = t["output_file"]
             else:
                 output_file = None
+
             
             if "rounds" in t:
                 rounds = t["rounds"]

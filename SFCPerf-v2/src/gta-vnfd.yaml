@@ -1,0 +1,31 @@
+template_name: gta-vnfd-node-9
+description: Gta VNF Ubuntu
+
+service_properties:
+  Id: gta-vnfd
+  vendor: tacker
+  version: 1
+  type:
+      - gta-vnf
+vdus:
+  vdu1:
+    id: vdu1
+    vm_image: Ubuntu-16.04-GTA
+    instance_type: custom
+    service_type: gta-vnf
+
+    network_interfaces:
+      management:
+        network: gta-net
+        management: true
+
+    placement_policy:
+      availability_zone: nova:node-9.gta.ufrj.br
+
+    auto-scaling: noop
+    monitoring_policy: noop
+    failure_policy: respawn
+
+    config:
+      param0: key0
+      param1: key1

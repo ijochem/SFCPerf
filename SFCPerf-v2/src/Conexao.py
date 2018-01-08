@@ -7,3 +7,6 @@ class Conexao:
         pass
     def command(self, cmd):
         return self.commandNoBlock(cmd).read()
+    
+    def copy(self, srcFile, dstFile):
+        pass
