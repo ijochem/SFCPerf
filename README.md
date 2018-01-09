@@ -15,12 +15,12 @@ Read the oficial SFCPerf [White Paper](https://www.gta.ufrj.br/ftp/gta/TechRepor
 
 To cite SFCPerf use (BibTex):
 
-@INPROCEEDINGS{sfcperf2018, 
-author={I. J. Sanz and D. M. F. Mattos and O. C. M. B. Duarte}, 
-booktitle={NOMS 2018 - 2018 IEEE/IFIP Network Operations and Management Symposium}, 
-title={SFCPerf: An Automatic Performance Evaluation Framework for Service Function Chaining}, 
-year={2018}, 
-volume={}, 
-number={}, 
-pages={}, 
-month=apr,}
+  @INPROCEEDINGS{sfcperf2018, 
+  author={I. J. Sanz and D. M. F. Mattos and O. C. M. B. Duarte}, 
+  booktitle={NOMS 2018 - 2018 IEEE/IFIP Network Operations and Management Symposium}, 
+  title={SFCPerf: An Automatic Performance Evaluation Framework for Service Function Chaining}, 
+  year={2018}, 
+  volume={}, 
+  number={}, 
+  pages={}, 
+  month=apr,}
