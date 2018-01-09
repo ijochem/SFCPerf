@@ -22,6 +22,6 @@ To cite SFCPerf use (BibTex):
   year={2018}, 
   volume={}, 
   number={}, 
-  pages={}, 
-  month=apr,}
+  pages={}
+  }
   ```
