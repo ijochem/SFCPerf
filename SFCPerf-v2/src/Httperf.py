@@ -29,23 +29,16 @@ class Httperf(Test):
         if self.conexaoSRC.connect(self.src):
             self.conexaoSRC.command("killall -9 httperf")
             cmd = "httperf --server " + str(self.dst) + " --port " + str(self.port) + " --num-conns=" + str(self.conns)\
-                  + "--http-version=" + self.httpv
+                  + " --http-version=" + self.httpv
             self.result = self.conexaoSRC.command(cmd)
             self.conexaoDST.command("killall -9 screen")
             return self.result
         else:
             print "Erro de conexao com o SRC"
 
-# adaptar handle
     def handleResult(self):
-        result = Test.handleResult(self).split("Server Report:")[1].strip().split("\n")[0]
-        items = result.split(" ")
-        valor = float(items[12])
-        m = {"K": 10 ** 3, "M": 10 ** 6, "G": 10 ** 9, "b": 1}
-        mult = items[13][0]
-
-        valor = valor * m[mult]
-
+        result = Test.handleResult(self).split("Connection rate:")[1].strip().split("\n")[0]
+        valor = float(result.split(" ")[0])
         return [valor]
 
 
