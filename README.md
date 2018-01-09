@@ -17,7 +17,7 @@ To cite SFCPerf use (BibTex):
   ```
   @INPROCEEDINGS{sfcperf2018, 
   author={I. J. Sanz and D. M. F. Mattos and O. C. M. B. Duarte}, 
-  booktitle={NOMS 2018 - 2018 IEEE/IFIP Network Operations and Management Symposium}, 
+  booktitle={}, 
   title={SFCPerf: An Automatic Performance Evaluation Framework for Service Function Chaining}, 
   year={2018}, 
   volume={}, 
