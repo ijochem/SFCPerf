@@ -6,8 +6,8 @@ class SFC:
         else:
             raise KeyError
         
-        self.conexao_params = SFCdict["Management"]["connection_params"]
-        self.conexao = __import__(SFCdict["Management"]["connection"]).getClass()(*self.conexao_params)
+        self.conexao_params = SFCdict["Management"]["connection"]["params"]
+        self.conexao = __import__(SFCdict["Management"]["connection"]["type"]).getClass()(*self.conexao_params)
         ip = SFCdict["Management"]["ip"]
         self.manager = __import__(SFCdict["Management"]["type"]).getClass()(ip, self.conexao)
         

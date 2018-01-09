@@ -6,8 +6,8 @@ from SFC import SFC
 class Workflow:
     def __init__(self, jsonWorkflow):
         j = jsonWorkflow
-        self.conexao_params = j["connection_params"]
-        self.conexao = __import__(j["connection"]).getClass()(*self.conexao_params)
+        self.conexao_params = j["connection"]["params"]
+        self.conexao = __import__(j["connection"]["type"]).getClass()(*self.conexao_params)
         
         self.visualize = None
         
