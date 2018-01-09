@@ -10,8 +10,7 @@ Authors:
 
 Please visit the [documentation](https://github.com/ijochem/SFCPerf/wiki) for more information.
 
-Read the oficial SFCPerf [White Paper](https://www.gta.ufrj.br/ftp/gta/TechReports/SMD18.pdf).
-
+Read the SFCPerf [White Paper](https://www.gta.ufrj.br/ftp/gta/TechReports/SMD18.pdf).
 
 To cite SFCPerf use (BibTex):
   ```
