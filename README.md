@@ -14,7 +14,7 @@ Read the oficial SFCPerf [White Paper](https://www.gta.ufrj.br/ftp/gta/TechRepor
 
 
 To cite SFCPerf use (BibTex):
-
+  ```
   @INPROCEEDINGS{sfcperf2018, 
   author={I. J. Sanz and D. M. F. Mattos and O. C. M. B. Duarte}, 
   booktitle={NOMS 2018 - 2018 IEEE/IFIP Network Operations and Management Symposium}, 
@@ -24,3 +24,4 @@ To cite SFCPerf use (BibTex):
   number={}, 
   pages={}, 
   month=apr,}
+  ```
