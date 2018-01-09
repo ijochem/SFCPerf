@@ -1,5 +1,6 @@
 import json
 import time
+from datetime import datetime
 from SFC import SFC
 
 class Workflow:
@@ -7,6 +8,13 @@ class Workflow:
         j = jsonWorkflow
         self.conexao_params = j["connection_params"]
         self.conexao = __import__(j["connection"]).getClass()(*self.conexao_params)
+        
+        self.visualize = None
+        
+        if "Visualize" in j:
+            self.visualize = __import__(j["Visualize"]["type"]).getClass()(*j["Visualize"]["params"])
+        
+        
         
         if "SFC" in j:
             self.sfc = SFC(j["SFC"])
@@ -53,13 +61,16 @@ class Workflow:
                     result += r
                 else:
                     result.append(r)
-            self.saveResult(testClass, result, output_file)
+            self.saveResult(testClass, result, output_file, test)
             
-    def saveResult (self, testClass, result, output_file):
+    def saveResult (self, testClass, result, output_file, testObj=None):
         print testClass.__dict__["__module__"]
         print result
+        jsonResult = json.dumps({"time":time.time(), "src":testObj.src,"dst":testObj.dst,"test":testClass.__dict__["__module__"],"result":result})
+        if self.visualize:
+            self.visualize.putData(jsonResult) 
         if output_file:
             f= open(str(output_file), "w")
-            f.write(json.dumps({"time":time.time(), "test":testClass.__dict__["__module__"],"result":result}))
+            f.write(jsonResult)
             f.close()
             
