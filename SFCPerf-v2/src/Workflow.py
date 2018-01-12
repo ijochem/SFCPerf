@@ -13,7 +13,9 @@ class Workflow:
         
         if "Visualize" in j:
             self.visualize = __import__(j["Visualize"]["type"]).getClass()(*j["Visualize"]["params"])
-        
+
+
+        #To do: Orchestate endpoint VMs on Openstack
         
         
         if "SFC" in j:

@@ -2,6 +2,7 @@ import SFCManager
 import SFC
 from copy import copy
 import cmd
+import time
 
 class Tacker(SFCManager.SFCManager):
     def __init__(self, ip, connection):
@@ -12,7 +13,12 @@ class Tacker(SFCManager.SFCManager):
     
     def deployChain(self, chainName, vnfNames):
         chain = ",".join(vnfNames)
-        
+
+        if self.vnfCheckStatus(vnfNames):
+            pass
+        else:
+            raise Exception("VNFs status error.")
+
         print "Creating the Chain"
         result = self.runCommand("tacker sfc-create --name "+ chainName+" --chain " + chain)
         print result
@@ -22,7 +28,7 @@ class Tacker(SFCManager.SFCManager):
     def deployClassifier(self, classifier):
         
         print "Deploying Classifier"
-        result = self.runCommand("tacker sfc-classifier-create --name" +classifier.name+ "--chain "+ classifier.chain.name+" --match "+classifier.matchRule)
+        result = self.runCommand("tacker sfc-classifier-create --name " +classifier.name+ " --chain "+ classifier.chain.name+" --match "+classifier.matchRule)
         print result
         
     
@@ -78,8 +84,33 @@ class Tacker(SFCManager.SFCManager):
         print creation
                 
         return True
-    
-    
+
+
+    def vnfCheckStatus(self, vnfNames, ):
+        vnfDict = {}
+        timeout = time.time() + 60 * 5 # 5 minutes timeout
+        result = self.runCommand("tacker vnf-list")
+        print "Waiting VNFs to become active"
+        print result
+        while result != "":
+            result = self.runCommand("tacker vnf-list | grep PENDING_CREATE")
+            if time.time() > timeout:
+                return False
+        if self.runCommand("tacker vnf-list | grep ERROR") != "":
+            return False
+        result = self.runCommand("tacker vnf-list")
+        print "Waiting VNFs to start."
+        for vnf in vnfNames:
+            result = self.runCommand("tacker vnf-list | grep %s | awk '{print $(NF-3)}'"%(vnf))
+            ip = result.strip("}").strip("\"")
+            vnfDict[vnf] = ip
+
+
+        print result
+        print "VNFs up."
+        return True
+
+
     def randomName(self, N=5):
         import random
         values = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'

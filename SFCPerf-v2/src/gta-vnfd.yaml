@@ -1,5 +1,5 @@
 template_name: gta-vnfd-node-9
-description: Gta VNF Ubuntu
+description: Gta VNF Ubuntu active
 
 service_properties:
   Id: gta-vnfd
@@ -10,7 +10,7 @@ service_properties:
 vdus:
   vdu1:
     id: vdu1
-    vm_image: Ubuntu-16.04-GTA
+    vm_image: active_vxlan_tool_ubuntu
     instance_type: custom
     service_type: gta-vnf
 

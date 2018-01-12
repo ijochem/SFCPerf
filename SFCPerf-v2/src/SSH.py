@@ -20,7 +20,7 @@ class SSH (Conexao):
         return t  
     
     def command(self, cmd):
-        return os.popen(self.connectString + cmd).read()
+        return os.popen(self.connectString + "\"" + cmd + "\"").read()
     
     def copy(self, host, srcFile, dstFile):
         copyString = "sshpass -p %s scp -o StrictHostKeyChecking=no %s %s@%s:%s"%(self.password, srcFile, self.user, host, dstFile)

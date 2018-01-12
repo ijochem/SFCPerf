@@ -33,7 +33,11 @@ class Chain:
         for vnf in self.chain:
             vnf.create(manager)
             vnfNames.append(vnf.name)
-        
+
+        #manager.vnfCheckStatus(vnfNames)
+
+        #manager.vnfActivate(vnfNames)
+
         manager.deployChain(self.name, vnfNames)
         
         manager.deployClassifier(classifier)
