@@ -1,2 +1,14 @@
-{"connection":{"type":"SSH","params":["root","pass"]},"tests":[{"src":"146.164.69.208","dst":"146.164.69.198","param":[5],"rounds":2,"test":"Ping","output_file":"/tmp/ping"},{"src":"146.164.69.208","dst":"146.164.69.198","param":[5001,"800M",10,1400],"rounds":10,"test":"Iperf"},{"src":"146.164.69.208","dst":"146.164.69.198","param":[3030,10000,"1.1"],"rounds":10,"test":"Httperf","output_file":"/tmp/httperf"}],"Visualize":{"type":"Kibana","params":["146.164.69.239",9200,"experiments"]},"SFC": {"Management": {"ip": "146.164.69.221", "connection": {"type":"Mock_SSH","params":["gta", "opnfv"]}, "type": "Tacker"}, "Classifier": {"matchRule": "source_port=0,dest_port=20000,protocol=6", "name": "test-classifier-gta"}, "Chain": {"name": "gta-chain-test", "chain": [{"node": "nova:node-8.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf1-gta", "network": "gta-net-test"}, {"node": "nova:node-9.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf2-gta", "network": "gta-net-test"}, {"node": "nova:node-10.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf3-gta", "network": "gta-net-test"}]}}}
+{"connection":{"type":"SSH","params":["root","opnfv"]},
+  "tests":[{"src":"10.240.116.114","dst":"10.240.116.115","param":[5],"rounds":1,"test":"Ping","output_file":"/tmp/ping"},
+           {"src":"10.240.116.114","dst":"10.240.116.115","param":[5001,"800M",10,1400],"rounds":1,"test":"Iperf"},
+           {"src":"10.240.116.114","dst":"10.240.116.115","param":[3030,10000,"1.1"],"rounds":1,"test":"Httperf","output_file":"/tmp/httperf"}],
+  "Visualize":{"type":"Kibana","params":["146.164.69.239",9200,"experiments"]},
+  "SFC": {"Management": {"ip": "10.240.116.12", "connection": {"type":"SSH","params":["root", "r00tme"]}, "type": "Tacker"},
+          "Classifier": {"matchRule": "source_port=0,dest_port=20000,protocol=6", "name": "test-classifier-gta"},
+          "Chain": {"name": "gta-chain-test", "chain": [{"node": "nova:node-10.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf1-gta", "network": "gta-net"},
+                                                        {"node": "nova:node-11.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf2-gta", "network": "gta-net"},
+                                                        {"node": "nova:node-14.gta.ufrj.br", "descriptor": "./gta-vnfd.yaml", "name": "vnf3-gta", "network": "gta-net"}]
+                   }
+         }
+  }
 
